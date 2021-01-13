@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PostGradCollabHub.Models;
 using PostGradCollabHub.Services;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PostGradCollabHub.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ProfileController : ControllerBase
@@ -19,12 +21,41 @@ namespace PostGradCollabHub.Controllers
             _profileService = profileService;
         }
 
+        /// <summary>
+        /// Returns all Profiles
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     GET /Profile
+        ///     {
+        ///         "Id": "5fff2ed0d44198a59c2dd0b2",
+        ///         "firstName": "Tim",
+        ///         "lastName": "Herron",
+        ///         "Email": "tmherron09@gmail.com",
+        ///         "githubLink": "Link",
+        ///         "linkedinLink": "Link"
+        ///      }
+        ///      
+        /// </remarks>
+        /// <returns>A list of profiles.</returns>
+        /// <response code="201">Returns list of all profiles.</response>
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [HttpGet]
         public ActionResult<List<Profile>> Get()
         {
             return _profileService.Get();
         }
 
+        /// <summary>
+        /// Gets a specific Profile by Id
+        /// </summary>
+        /// <param name="id">Id of profile</param>
+        /// <returns>Specific Profile by Id</returns>
+        /// <response code="201">Returns matching Profile</response>
+        /// <response code="404">No matching profile found.</response>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id:length(24)}", Name = "GetProfile")]
         public ActionResult<Profile> Get(string id)
         {

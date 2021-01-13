@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PostGradCollabHub.Data;
 
-namespace PostGradCollabHub.Models
+namespace PostGradCollabHub.Data
 {
     public class CollabHubDatabaseSettings : ICollabHubDatabaseSettings
     {

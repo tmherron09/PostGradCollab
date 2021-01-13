@@ -17,7 +17,7 @@ namespace PostGradCollabHub.Services
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _profiles = database.GetCollection<Profile>("Profile");
+            _profiles = database.GetCollection<Profile>("Profiles");
         }
 
         public List<Profile> Get() =>
