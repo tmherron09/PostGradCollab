@@ -41,6 +41,8 @@ namespace PostGradCollabHub
 
             services.AddSingleton<ProfileService>();
 
+            services.AddCors();
+
             services.AddControllers().AddNewtonsoftJson(options => options.UseMemberCasing());
         }
 
@@ -58,6 +60,12 @@ namespace PostGradCollabHub
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "PostGradCollabHub API V1");
             });
+
+            app.UseCors(
+                options => options.AllowAnyOrigin()
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader()
+                );
 
             app.UseHttpsRedirection();
 
