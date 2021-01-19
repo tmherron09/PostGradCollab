@@ -2,6 +2,12 @@
 Collaboration of graduates of devCodeCamp to design a website for post grads to collaborate and present their work and porfolios.
 
 ## News
-January 14th, 
-   This is our initial/base project for us to begin the backend development. It has an example usage of MongoDB interaction (please see other documentation to make sure the appsetting.json matches your localdb until we have a global shard or hosted db.). This project also incorporates Swagger to document our API. I will also try to host a seperate Swagger Editor instance for people to make changes/recommendations for the API/endpoints without needing to hardcode them.
-   Tomorrow after our next meeting, I will post User Stories and any DB modeling docs or ERDs that we have general consensus on. Please feel free to fork or contact me to become a contributor. ~Tim H.
+January 19th, 
+   Per consensus at last meeting, Project structure has been changed to reflect the addition/change to utilizing ReactJs.Net allowing for full MVC usage with client or server-side rendering of React Components within views (or a base SPA running off of a main controller.) Dumby examples of a Post and Post comment class have been added for John E. to continue work on post components.
+
+## Future
+   Katelynn T. will be beginning work on the Repository Design Pattern implementation, while she and others continue work on the ERD.
+   Tim H. will test implementing an Authentification/Authorization schema.
+   
+## Contact
+Questions please contact Tim at tmherron09@gmail.com or for devCodeCamp past/current students please feel free to reach out on Slack.
