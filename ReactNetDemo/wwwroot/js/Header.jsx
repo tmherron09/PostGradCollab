@@ -1,22 +1,8 @@
-﻿class CommentList extends React.Component {
-    render() {
-        return (
-            <div className="commentList">
-                <Comment author="Daniel Lo Nigro">Hello ReactJS.NET World!</Comment>
-                <Comment author="Pete Hunt">This is one comment</Comment>
-                <Comment author="Jordan Walke">This is *another* comment</Comment>
-            </div>
-        );
-    }
-}
-
-class CommentForm extends React.Component {
-    render() {
-        return (
-            <div className="commentForm">Hello, world! I am a CommentForm.</div>
-        );
-    }
-}
+﻿const data = [
+    { id: 1, author: 'Lo Nigro', text: 'Hi ReactJS.NET World!' },
+    { id: 2, author: 'Pete Hunt', text: 'This is one comment' },
+    { id: 3, author: 'Jordan Walke', text: 'This is *another* comment' },
+];
 
 class Comment extends React.Component {
     render() {
@@ -29,16 +15,35 @@ class Comment extends React.Component {
     }
 }
 
+class CommentList extends React.Component {
+    render() {
+        const commentNodes = this.props.data.map(comment => (
+            <Comment author={comment.author} key={comment.id}>
+                {comment.text}
+            </Comment>
+        ));
+        return <div className="commentList">{commentNodes}</div>;
+    }
+}
+
+class CommentForm extends React.Component {
+    render() {
+        return (
+            <div className="commentForm">Hello, world! I am a CommentForm.</div>
+        );
+    }
+}
+
 class CommentBox extends React.Component {
     render() {
         return (
             <div className="commentBox">
                 <h1>Comments</h1>
-                <CommentList />
+                <CommentList data={this.props.data} />
                 <CommentForm />
             </div>
         );
     }
 }
 
-ReactDOM.render(<CommentBox />, document.getElementById('example'));
+ReactDOM.render(<CommentBox data={data} />, document.getElementById('example'));

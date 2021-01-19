@@ -1,19 +1,48 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ReactNetDemo.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using ReactDemo.Models;
 
-namespace ReactNetDemo.Controllers
+namespace ReactDemo.Controllers
 {
-    [ApiExplorerSettings(IgnoreApi = true)]
     public class HomeController : Controller
     {
+        private static readonly IList<CommentModel> _comments;
 
-        public IActionResult Index()
+        static HomeController()
+        {
+            _comments = new List<CommentModel>
+            {
+                new CommentModel
+                {
+                    Id = 1,
+                    Author = "Daniel Lo Nigro",
+                    Text = "Hello ReactJS.NET World!"
+                },
+                new CommentModel
+                {
+                    Id = 2,
+                    Author = "Pete Hunt",
+                    Text = "This is one comment"
+                },
+                new CommentModel
+                {
+                    Id = 3,
+                    Author = "Jordan Walke",
+                    Text = "This is *another* comment"
+                },
+            };
+        }
+
+        [Route("comments")]
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        public ActionResult Comments()
+        {
+            return Json(_comments);
+        }
+
+        public ActionResult Index()
         {
             return View();
         }
-
     }
-
-
 }
