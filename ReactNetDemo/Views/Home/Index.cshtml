@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ReactNetDemo.Models.CommentModel>
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Hello React</title>
+</head>
+
+<body>
+
+
+
+    <h1>Example Component</h1>
+    <br />
+
+
+
+    @* Eventually a default Layout will be used, but for test full html added. *@
+    <div id="example"></div>
+
+
+
+
+    @*
+        Direct link to Api documentation. Auto generated from Api Controllers not marked Ignore.
+        <footer>
+        <h3>Swagger Link</h3>
+        <a href="/swagger">Swagger UI</a>
+    </footer>*@
+
+
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.0/umd/react.development.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.0/umd/react-dom.development.js"></script>
+    
+    @*  A Markup to Html library. From ReactJs.Net tutorial but potentially useful for later post decorating.
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>*@
+
+    <script src="@Url.Content("~/js/Example.jsx")"></script>
+
+
+</body>
+
+</html>
