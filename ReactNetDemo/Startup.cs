@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using ReactNetDemo.Data;
 using Microsoft.Extensions.Options;
 using ReactNetDemo.Services;
+using JavaScriptEngineSwitcher.ChakraCore;
 
 namespace ReactNetDemo
 {
@@ -36,6 +37,9 @@ namespace ReactNetDemo
 
             services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
                 .AddV8();
+
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = ChakraCoreJsEngine.EngineName)
+                .AddChakraCore();
 
             services.AddSwaggerGen();
 
