@@ -28,7 +28,7 @@ namespace ReactDemo.Controllers
                 {
                     Id = 3,
                     Author = "Jordan Walke",
-                    Text = "This is *another* comment"
+                    Text = "This is another comment"
                 },
             };
         }
@@ -38,6 +38,16 @@ namespace ReactDemo.Controllers
         public ActionResult Comments()
         {
             return Json(_comments);
+        }
+
+        [Route("comments/new")]
+        [HttpPost]
+        public ActionResult AddComment(CommentModel comment)
+        {
+            // Create a fake ID for this comment
+            comment.Id = _comments.Count + 1;
+            _comments.Add(comment);
+            return Content("Success :)");
         }
 
         public ActionResult Index()
