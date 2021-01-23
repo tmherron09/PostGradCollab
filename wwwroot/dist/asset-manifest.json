@@ -1,0 +1,13 @@
+{
+  "files": {
+    "0.b1997a3e.js": "/dist/0.b1997a3e.js",
+    "main.js": "/dist/main.b5d07865.js",
+    "runtime.js": "/dist/runtime.2910b12e.js",
+    "vendor.js": "/dist/vendor.50cbf625.js"
+  },
+  "entrypoints": [
+    "/dist/main.b5d07865.js",
+    "/dist/runtime.2910b12e.js",
+    "/dist/vendor.50cbf625.js"
+  ]
+}

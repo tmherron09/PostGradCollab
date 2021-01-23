@@ -16,6 +16,7 @@ using ReactNetDemo.Data;
 using Microsoft.Extensions.Options;
 using ReactNetDemo.Services;
 using JavaScriptEngineSwitcher.ChakraCore;
+using React;
 
 namespace ReactNetDemo
 {
@@ -24,6 +25,19 @@ namespace ReactNetDemo
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+        }
+
+        public static class ReactConfig
+        {
+            public static void Configure()
+            {
+                ReactSiteConfiguration.Configuration
+                  .SetLoadBabel(false)
+                  .SetLoadReact(false)
+                  .AddScriptWithoutTransform("~/dist/runtime.js")
+                  .AddScriptWithoutTransform("~/dist/vendor.js")
+                  .AddScriptWithoutTransform("~/dist/main.js");
+            }
         }
 
         public IConfiguration Configuration { get; }
@@ -54,6 +68,7 @@ namespace ReactNetDemo
             services.AddCors();
 
             services.AddControllersWithViews();
+
 
 
         }
