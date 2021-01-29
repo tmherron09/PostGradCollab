@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/css/tailwind.css" rel="stylesheet">
+    @Html.ReactGetStylePaths()
 </head>
 <body>
     <div>
-
-
-
         @RenderBody()
     </div>
+
+
+
+
+
+    <!-- Keeping in layout for client side rendering until otherwise not needed. -->
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.0/umd/react.development.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.0/umd/react-dom.development.js"></script>
+
+
+
+    @Html.ReactGetScriptPaths()
+    <!-- If script is not added in "~/dist" add direct script tag reference-->
+    @Html.ReactInitJavaScript()
 </body>
 </html>

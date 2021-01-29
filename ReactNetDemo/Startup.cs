@@ -1,21 +1,15 @@
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using JavaScriptEngineSwitcher.V8;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Http;
-using JavaScriptEngineSwitcher.V8;
-using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
-using React.AspNet;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ReactNetDemo.Data;
 using Microsoft.Extensions.Options;
+using React.AspNet;
+using ReactNetDemo.Data;
 using ReactNetDemo.Services;
-using JavaScriptEngineSwitcher.ChakraCore;
 
 namespace ReactNetDemo
 {
@@ -94,10 +88,18 @@ namespace ReactNetDemo
             app.UseReact(config =>
             {
                 //Add all necessary Js Files here for Server-side Rendering
-                //config
-                //    .AddScript("~/js/remarkable.min.js")
+                config
+                    .SetReuseJavaScriptEngines(true)
+                    .SetLoadBabel(true)
+                    .SetLoadReact(true)
+                    .SetReactAppBuildPath("~/dist");
                     
-                
+                    //.AddScript("~/js/remarkable.min.js");
+                // .AddScript for files that may need jsx transformation to js.
+                // For exact paths to additional scripts if no JSX conversion needed.
+                //.AddScriptWithoutTransform("~/dist/path-to-your-file.js")
+
+
             });
 
             app.UseStaticFiles();
