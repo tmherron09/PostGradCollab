@@ -1,6 +1,15 @@
-﻿@model IEnumerable<ReactNetDemo.Models.CommentModel>
+﻿@using React.AspNet
+@using React.RenderFunctions
+@using React.Router
+@model IEnumerable<ReactNetDemo.Models.CommentModel>
 @{
     Layout = "_Layout";
+    var emotionFunctions = new EmotionFunctions();
+    var styledComponentsFunctions = new StyledComponentsFunctions();
+    var reactJssFunctions = new ReactJssFunctions();
+    var helmetFunctions = new ReactHelmetFunctions();
+
+    var chainedFunctions = new ChainedRenderFunctions(emotionFunctions, styledComponentsFunctions, reactJssFunctions, helmetFunctions);
 }
 
 <html>
@@ -17,27 +26,14 @@
 <body>
 
 
+    @Html.ReactRouter("Components.RootComponent", new
+        { initialComments = "" }, renderFunctions: chainedFunctions)
+    @{
+        ViewBag.ServerStyles = styledComponentsFunctions.RenderedStyles + reactJssFunctions.RenderedStyles;
+        ViewBag.HelmetTitle = helmetFunctions.RenderedHelmet?.GetValueOrDefault("title");
+    }
 
-    @*<h1>Example Component, loaded correctly</h1>
-        <br />*@
-
-
-
-    @* Eventually a default Layout will be used, but for test full html added. *@
-    <div id="example"></div>
-
-
-
-
-    @*
-        Direct link to Api documentation. Auto generated from Api Controllers not marked Ignore.
-        <footer>
-            <h3>Swagger Link</h3>
-            <a href="/swagger">Swagger UI</a>
-        </footer>
-    *@
-
-    <script src="@Url.Content("~/js/Comments.jsx")"></script>
+    @*<script src="@Url.Content("~/js/Comments.jsx")"></script>*@
 
 
 </body>
